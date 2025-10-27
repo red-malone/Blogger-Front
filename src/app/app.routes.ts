@@ -1,3 +1,5 @@
 import { Routes } from '@angular/router';
-
-export const routes: Routes = [];
+import { LandingScreen } from './screen/landing-screen/landing-screen';
+export const routes: Routes = [
+    {path: '', component: LandingScreen}
+];
