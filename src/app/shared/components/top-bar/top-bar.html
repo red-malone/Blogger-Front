@@ -1,0 +1,18 @@
+<mat-toolbar>
+    <div class="toolbar-container">
+        
+        
+        <div class="center-section">
+            <span class="logo">Istoria</span>
+        </div>
+        
+        <div class="right-section">
+            <ng-container *ngIf="!isLoggedIn">
+                <button mat-button class="auth-btn">Login</button>
+            </ng-container>
+            <ng-container *ngIf="!isLoggedIn">
+                <button mat-button class="register-btn">Register</button>
+            </ng-container>
+        </div>
+    </div>
+</mat-toolbar>

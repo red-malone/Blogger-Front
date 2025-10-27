@@ -1,0 +1,31 @@
+<mat-card class="profile-card">
+    <div class="profile-header">
+        <div class="avatar-section">
+            <img [src]="'https://ui-avatars.com/api/?name=' + user.name" [alt]="user.name" class="profile-avatar">
+        </div>
+        <h2 class="profile-name">{{user.name}}</h2>
+        <p class="profile-bio">{{user.bio}}</p>
+    </div>
+
+    <div class="profile-stats">
+        <div class="stat-item">
+            <span class="stat-value">{{user.posts}}</span>
+            <span class="stat-label">Posts</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value">{{user.followers}}</span>
+            <span class="stat-label">Followers</span>
+        </div>
+        <div class="stat-item">
+            <span class="stat-value">{{user.following}}</span>
+            <span class="stat-label">Following</span>
+        </div>
+    </div>
+
+    <div class="profile-actions">
+        <button mat-stroked-button class="edit-button">
+            <mat-icon>edit</mat-icon>
+            Edit Profile
+        </button>
+    </div>
+</mat-card>

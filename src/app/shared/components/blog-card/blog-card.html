@@ -1,0 +1,47 @@
+<mat-card class="blog-card">
+    <div class="blog-content">
+        <div class="blog-header">
+            <img [src]="'https://ui-avatars.com/api/?name=JD'" class="author-avatar" [alt]="blog.author">
+            <div class="author-info">
+                <h3>{{blog.title}}</h3>
+                <p class="author-meta">{{blog.author}} • {{blog.date | date:'MMM d, yyyy'}}</p>
+            </div>
+        </div>
+
+        <p class="post-content">{{blog.content}}</p>
+
+        <div class="blog-actions">
+            <button mat-button class="action-button" (click)="addLike()">
+                <mat-icon [color]="blog.likes > 0 ? 'warn' : ''">favorite</mat-icon>
+                <span>{{blog.likes}}</span>
+            </button>
+            <button mat-button class="action-button" (click)="toggleComments()">
+                <mat-icon>chat_bubble_outline</mat-icon>
+                <span>{{blog.comments.length}}</span>
+            </button>
+        </div>
+
+        <mat-divider *ngIf="isCommentOpen"></mat-divider>
+
+        <div class="comments-section" *ngIf="isCommentOpen">
+            <div class="comment" *ngFor="let comment of blog.comments">
+                <img [src]="'https://ui-avatars.com/api/?name=' + comment.author" [alt]="comment.author" class="comment-avatar">
+                <div class="comment-content">
+                    <div class="comment-header">
+                        <span class="comment-author">{{comment.author}}</span>
+                        <span class="comment-date">{{comment.date | date:'shortDate'}}</span>
+                    </div>
+                    <p class="comment-text">{{comment.content}}</p>
+                </div>
+            </div>
+
+            <mat-form-field class="comment-input" appearance="outline">
+                <mat-label>Write a comment...</mat-label>
+                <input matInput #commentInput>
+                <button mat-icon-button matSuffix (click)="addComment(commentInput.value); commentInput.value = ''">
+                    <mat-icon>send</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </div>
+</mat-card>

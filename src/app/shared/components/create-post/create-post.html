@@ -1,0 +1,29 @@
+<mat-card class="create-post-card">
+    <div class="create-post-container">
+        <div class="header">
+            <div class="avatar">
+                <img src="https://ui-avatars.com/api/?name=CU" alt="CU">
+            </div>
+            <h2>Create Post</h2>
+        </div>
+
+        <mat-form-field appearance="outline" class="post-input">
+            <mat-label>What's on your mind?</mat-label>
+            <textarea matInput
+                [(ngModel)]="postContent"
+                rows="3"
+                placeholder="What's on your mind?">
+            </textarea>
+        </mat-form-field>
+
+        <div class="actions">
+            <button mat-flat-button 
+                color="primary"
+                class="create-button" 
+                (click)="createPost()" 
+                [disabled]="!postContent.trim()">
+                Create Post
+            </button>
+        </div>
+    </div>
+</mat-card>

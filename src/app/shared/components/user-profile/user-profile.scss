@@ -1,0 +1,74 @@
+.profile-card {
+    background: white;
+    border-radius: 8px;
+    padding: 2rem;
+    text-align: center;
+
+    .profile-header {
+        margin-bottom: 1.5rem;
+
+        .profile-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 1rem;
+        }
+
+        .profile-name {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #4a3527;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .profile-bio {
+            margin: 0.5rem 0;
+            color: #725b4b;
+            font-size: 0.9rem;
+        }
+    }
+
+    .profile-stats {
+        display: flex;
+        justify-content: space-around;
+        padding: 1rem 0;
+        border-top: 1px solid #eee;
+        border-bottom: 1px solid #eee;
+        margin-bottom: 1.5rem;
+
+        .stat-item {
+            text-align: center;
+
+            .stat-value {
+                display: block;
+                font-size: 1.2rem;
+                font-weight: 600;
+                color: #4a3527;
+            }
+
+            .stat-label {
+                color: #725b4b;
+                font-size: 0.8rem;
+            }
+        }
+    }
+
+    .profile-actions {
+        .edit-button {
+            color: #4a3527;
+            border-color: #c8a187;
+
+            &:hover {
+                background: rgba(74, 53, 39, 0.05);
+            }
+            
+            mat-icon {
+                font-size: 18px;
+                height: 18px;
+                width: 18px;
+                margin-right: 4px;
+            }
+        }
+    }
+}

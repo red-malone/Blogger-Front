@@ -1,0 +1,45 @@
+:host {
+    .mat-toolbar {
+        background: #4a3527;
+        box-shadow: 0 2px 15px rgba(74, 53, 39, 0.2);
+    }
+
+    .toolbar-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+
+        .left-section, .right-section {
+        min-width: 100px;
+    }
+
+    .center-section {
+        text-align: center;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #ffffff;
+        font-family: 'Playfair Display', serif;
+    }
+
+    .auth-btn {
+        color: #c8a187;
+        &:hover {
+            background: rgba(200, 161, 135, 0.1);
+        }
+    }
+
+    .register-btn {
+        color: #ffffff;
+        &:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+    }
+}
+}
