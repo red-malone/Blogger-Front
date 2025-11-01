@@ -1,4 +1,4 @@
-<mat-card class="profile-card">
+<mat-card class="profile-card" (click)="goToProfile()" style="cursor: pointer;">
     <div class="profile-header">
         <div class="avatar-section">
             <img [src]="'https://ui-avatars.com/api/?name=' + user.name" [alt]="user.name" class="profile-avatar">

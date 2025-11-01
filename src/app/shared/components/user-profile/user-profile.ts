@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -27,4 +28,10 @@ export class UserProfileComponent {
     following: 85,
     posts: 24
   };
+
+  constructor(private router: Router) {}
+
+  goToProfile() {
+    this.router.navigate(['/profile']);
+  }
 }

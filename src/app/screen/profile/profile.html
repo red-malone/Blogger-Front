@@ -1,0 +1,85 @@
+<div class="profile-container">
+    <div class="profile-header">
+        <div class="cover-image" [style.backgroundImage]="'url(' + user.coverImage + ')'">
+            <div class="profile-image-container">
+                <img [src]="user.profileImage" [alt]="user.name" class="profile-image">
+            </div>
+        </div>
+        
+        <div class="profile-info">
+            <div class="profile-details">
+                <h1>{{user.name}}</h1>
+                <p class="bio">{{user.bio}}</p>
+            </div>
+            
+            <div class="profile-stats">
+                <div class="stat">
+                    <span class="stat-value">{{user.posts}}</span>
+                    <span class="stat-label">Posts</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">{{user.followers}}</span>
+                    <span class="stat-label">Followers</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-value">{{user.following}}</span>
+                    <span class="stat-label">Following</span>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <button mat-raised-button color="primary">
+                    <mat-icon>edit</mat-icon>
+                    Edit Profile
+                </button>
+                <button mat-stroked-button>
+                    <mat-icon>settings</mat-icon>
+                    Settings
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <mat-tab-group class="profile-content" mat-align-tabs="center">
+        <mat-tab label="Posts">
+            <div class="tab-content">
+                <app-blog-card 
+                    *ngFor="let blog of blogs" 
+                    [blog]="blog">
+                </app-blog-card>
+            </div>
+        </mat-tab>
+        <mat-tab label="About">
+            <div class="tab-content">
+                <mat-card>
+                    <mat-card-content>
+                        <h2>About Me</h2>
+                        <p>{{user.bio}}</p>
+                        
+                        <h3>Contact Information</h3>
+                        <mat-form-field appearance="outline" class="full-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput value="john.doe@example.com" disabled>
+                        </mat-form-field>
+                        
+                        <h3>Social Links</h3>
+                        <div class="social-links">
+                            <button mat-button>
+                                <mat-icon>link</mat-icon>
+                                Website
+                            </button>
+                            <button mat-button>
+                                <mat-icon>public</mat-icon>
+                                Twitter
+                            </button>
+                            <button mat-button>
+                                <mat-icon>code</mat-icon>
+                                GitHub
+                            </button>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>
