@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { Router } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,12 +10,11 @@ import { MatDividerModule } from '@angular/material/divider';
   selector: 'app-user-profile',
   standalone: true,
   imports: [
-    CommonModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
     MatDividerModule
-  ],
+],
   templateUrl: './user-profile.html',
   styleUrls: ['./user-profile.scss']
 })

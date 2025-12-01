@@ -1,24 +1,25 @@
 <div class="home-container">
-    <app-top-bar></app-top-bar>
-    
-    <div class="content-container">
-        <aside class="profile-sidebar">
-            <mat-card>
-                <app-user-profile></app-user-profile>
-            </mat-card>
-        </aside>
-        
-        <main class="main-content">
-            <mat-card>
-                <app-create-post></app-create-post>
-            </mat-card>
-            
-            <div class="blog-list">
-                <app-blog-card 
-                    *ngFor="let blog of blogs" 
-                    [blog]="blog">
-                </app-blog-card>
-            </div>
-        </main>
-    </div>
+  <app-top-bar></app-top-bar>
+
+  <div class="content-container">
+    <aside class="profile-sidebar">
+      <mat-card>
+        <app-user-profile></app-user-profile>
+      </mat-card>
+    </aside>
+
+    <main class="main-content">
+      <mat-card>
+        <app-create-post></app-create-post>
+      </mat-card>
+
+      <div class="blog-list">
+        @for (blog of blogs; track blog) {
+          <app-blog-card
+            [blog]="blog">
+          </app-blog-card>
+        }
+      </div>
+    </main>
+  </div>
 </div>

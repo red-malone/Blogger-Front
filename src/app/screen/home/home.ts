@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar';
 import { UserProfileComponent } from '../../shared/components/user-profile/user-profile';
 import { CreatePostComponent } from '../../shared/components/create-post/create-post';
@@ -12,7 +12,6 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-home',
   standalone: true,
   imports: [
-    CommonModule,
     TopBarComponent,
     UserProfileComponent,
     CreatePostComponent,
@@ -20,7 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatCardModule,
     MatButtonModule,
     MatIconModule
-  ],
+],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
