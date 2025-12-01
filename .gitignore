@@ -6,8 +6,6 @@
 /out-tsc
 /bazel-out
 
-.env
-
 # Node
 /node_modules
 npm-debug.log
@@ -45,3 +43,4 @@ Thumbs.db
 
 # Local env files
 .env
+.env.local
