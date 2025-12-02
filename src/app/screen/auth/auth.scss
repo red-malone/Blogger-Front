@@ -1,21 +1,73 @@
-mat-card.auth-container {
-  max-width: 420px;
-  margin: 48px auto;
-  padding: 16px;
+:root{
+  --brand-dark: #5b3628; /* deep brown */
+  --brand-light: #d9c4b0; /* warm beige */
+  --muted: #8a6f5a;
 }
 
-.full {
-  width: 100%;
+.auth-hero{
+  min-height: calc(100vh - 64px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:28px;
+  /* neutral warm background */
+  background: #fbf6f1;
 }
 
-.actions {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  margin-top: 12px;
+.auth-card{
+  width:100%;
+  max-width:1000px;
+  display:flex;
+  border-radius:16px;
+  overflow:hidden;
+//   box-shadow: 0 14px 40px rgba(80,50,30,0.12);
 }
 
-.error {
-  color: #c62828;
-  margin-top: 12px;
+.brand-pane{
+  flex:1 1 48%;
+  /* stronger brown gradient for high contrast */
+  background-color: #4a3527eb;
+  color:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.brand-inner{ padding:36px; max-width:360px; 
+}
+.brand-inner .logo{ font-weight:800; font-size:1.6rem; letter-spacing:1px }
+.brand-inner h2{ margin:8px 0 12px; font-size:1.8rem; font-weight:700 }
+.brand-inner .tag{ color: rgba(255, 255, 255, 0.95); margin-bottom:18px; opacity:0.95 }
+.brand-inner .benefits{ list-style:none; padding:0; margin:0; display:flex; gap:12px; flex-direction:column }
+.brand-inner .benefits li{ background: rgba(255, 255, 255, 0.419); padding:10px 12px; border-radius:8px; color:#ffffff; font-weight:600 }
+
+.form-pane{
+  flex:1 1 52%;
+  background:#ffffffb1;
+  padding:36px 40px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.form-title{ font-size:1.15rem; margin-bottom:12px; color:var(--brand-dark); font-weight:600 }
+.full{ width:100% }
+.actions{ margin-top:18px }
+.alt{ margin-top:8px }
+.error{ color:#b00020; margin-top:12px }
+
+/* Material overrides to ensure readability on white */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline { color: transparent !important; }
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline-thick { stroke: var(--muted) !important; }
+::ng-deep .mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick { stroke: var(--brand-dark) !important; }
+::ng-deep .mat-input-element { color: #2e1f18; }
+::ng-deep .mat-form-field-label { color: var(--muted); }
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline path { stroke-width: 1.2px; }
+
+/* style Material primary button to brown */
+::ng-deep .mat-raised-button.mat-primary, ::ng-deep .mat-raised-button { background: var(--brand-dark) !important; color: #fff !important; box-shadow:none !important }
+
+@media (max-width:900px){
+  .auth-card{ flex-direction:column }
+  .brand-pane{ padding:20px }
 }
