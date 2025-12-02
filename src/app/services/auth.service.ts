@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { environment } from '../../environments/environment';
 
-// Allow access to injected build-time env variables provided by dotenv-webpack
-declare const process: any;
-const API_URL = process?.env?.API_URL || '/api';
+const API_URL = environment?.apiUrl?.replace(/\/\/$/, '') || 'http://localhost:3000';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {

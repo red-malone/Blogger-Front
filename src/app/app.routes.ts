@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { LandingScreen } from './screen/landing-screen/landing-screen';
 import { Home } from './screen/home/home';
 import { ProfileComponent } from './screen/profile/profile';
+import { AuthComponent } from './screen/auth/auth';
+import { authGuard } from './guards/auth.guard';
 export const routes: Routes = [
   {
     path: '',
@@ -9,10 +11,19 @@ export const routes: Routes = [
   },
   {
     path: 'home',
-    component: Home,//Path to home screen
+    component: Home // public home - accessible to guests
   },
   {
     path: 'profile',
     component: ProfileComponent,//Path to profile screen
+    canActivate: [authGuard]
   },
+  {
+    path: 'login',
+    component: AuthComponent
+  },
+  {
+    path: 'signup',
+    component: AuthComponent
+  }
 ];
