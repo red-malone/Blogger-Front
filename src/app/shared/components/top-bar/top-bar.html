@@ -7,11 +7,11 @@
     </div>
 
     <div class="right-section">
-      @if (!isLoggedIn) {
-        <button mat-button class="auth-btn">Login</button>
+      @if (isGuest) {
+        <button mat-button class="auth-btn" routerLink="/login">Login</button>
       }
-      @if (!isLoggedIn) {
-        <button mat-button class="register-btn">Register</button>
+      @if (isGuest) {
+        <button mat-button class="register-btn" routerLink="/signup">Register</button>
       }
     </div>
   </div>
