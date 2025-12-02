@@ -18,12 +18,12 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     TopBarComponent,
     UserProfileComponent,
-    CreatePostComponent,
+    // CreatePostComponent,
     BlogCardComponent,
     MatCardModule,
     MatButtonModule,
     MatIconModule,
-    RouterLink
+    // RouterLink
 ],
   templateUrl: './home.html',
   styleUrl: './home.scss',

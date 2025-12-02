@@ -10,7 +10,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   signup(payload: { name?: string; email: string; password: string }): Observable<any> {
-    return this.http.post(`${API_URL}/auth/signup`, payload).pipe(
+    return this.http.post(`${API_URL}/users/register`, payload).pipe(
       tap((res: any) => {
         if (res?.token) sessionStorage.setItem('token', res.token);
       })
@@ -18,7 +18,7 @@ export class AuthService {
   }
 
   login(payload: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${API_URL}/auth/login`, payload).pipe(
+    return this.http.post(`${API_URL}/users/login`, payload).pipe(
       tap((res: any) => {
         if (res?.token) sessionStorage.setItem('token', res.token);
       })
