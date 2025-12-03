@@ -36,4 +36,16 @@ export class AuthService {
   isLoggedIn(): boolean {
     return !!this.getToken();
   }
+
+  decodeToken():any{
+    const token = this.getToken();
+    if (!token) return null;
+    const payload = token.split('.')[1];
+    const decodedPayload = atob(payload);
+    return JSON.parse(decodedPayload);
+  }
+  getUserId(): string | null {
+    const decoded = this.decodeToken();
+    return decoded ? decoded.id : null;
+  }
 }

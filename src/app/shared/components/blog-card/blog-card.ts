@@ -5,24 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule } from '@angular/material/divider';
-
-interface Blog {
-  id: string;
-  title: string;
-  content: string;
-  author: string;
-  date: Date;
-  likes: number;
-  comments: Comment[];
-}
-
-interface Comment {
-  id: string;
-  content: string;
-  author: string;
-  date: Date;
-}
-
+import { Blog } from '../../../models/blog.model';
 @Component({
   selector: 'app-blog-card',
   standalone: true,
@@ -54,9 +37,12 @@ export class BlogCardComponent {
     // Will be implemented with service
     if (comment.trim()) {
       this.blog.comments.push({
-        id: Date.now().toString(),
-        content: comment,
-        author: 'Current User', // Will be replaced with actual user
+        _id: Date.now().toString(),
+        comment: comment,
+        user: {
+          _id: 'Current User ID', // Will be replaced with actual user ID
+          username: 'Current User', // Will be replaced with actual username
+        },
         date: new Date()
       });
     }

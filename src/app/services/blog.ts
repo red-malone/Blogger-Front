@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { AuthService } from './auth.service';
 
 const API_URL = 'http://localhost:3000';
 @Injectable({
   providedIn: 'root',
 })
 export class Blog {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
   getBlogs(): Observable<any[]> {
     return this.http.get(`${API_URL}/blogs`).pipe(
@@ -20,20 +21,23 @@ export class Blog {
       })
     );
   }
-
-  getPost(id: string): Observable<any> {
-    return this.http.get(`${API_URL}/blogs/${id}`);
+  getBlog(): Observable<any> {
+    const id = this.authService.getUserId();
+    return this.http.get(`${API_URL}/blogs/${id}`).pipe(
+      map((res: any) =>{
+        if (Array.isArray(res)) return res;
+        if (res && Array.isArray(res.blogs)) return res.blogs;
+        return [] as any[];
+      })
+    );
   }
-
-  createPost(payload: any): Observable<any> {
+  createBlog(payload: any): Observable<any> {
     return this.http.post(`${API_URL}/blogs`, payload);
   }
-
-  updatePost(id: string, payload: any): Observable<any> {
+  updateBlog(id: string, payload: any): Observable<any> {
     return this.http.put(`${API_URL}/blogs/${id}`, payload);
   }
-
-  deletePost(id: string): Observable<any> {
-    return this.http.delete(`${API_URL}/posts/${id}`);
+  deleteBlog(id: string): Observable<any> {
+    return this.http.delete(`${API_URL}/blogs/${id}`);
   }
 }

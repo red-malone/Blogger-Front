@@ -1,28 +1,31 @@
 <div class="profile-container">
   <div class="profile-header">
-    <div class="cover-image" [style.backgroundImage]="'url(' + user.coverImage + ')'">
+    <!-- <div class="cover-image" [style.backgroundImage]="'url(' + user.coverImage + ')'">
       <div class="profile-image-container">
         <img [src]="user.profileImage" [alt]="user.name" class="profile-image">
       </div>
-    </div>
+    </div> -->
 
     <div class="profile-info">
       <div class="profile-details">
-        <h1>{{user.name}}</h1>
+        <h1>{{user.username}}</h1>
         <p class="bio">{{user.bio}}</p>
       </div>
 
       <div class="profile-stats">
         <div class="stat">
-          <span class="stat-value">{{user.posts}}</span>
+          <span class="stat-value">"0"</span>
+          <!-- Put actual user.posts -->
           <span class="stat-label">Posts</span>
         </div>
         <div class="stat">
-          <span class="stat-value">{{user.followers}}</span>
+          <span class="stat-value">'0'</span>
+          <!-- Put actual user.followers -->
           <span class="stat-label">Followers</span>
         </div>
         <div class="stat">
-          <span class="stat-value">{{user.following}}</span>
+          <span class="stat-value">'0'</span>
+          <!-- Put actual user.following -->
           <span class="stat-label">Following</span>
         </div>
       </div>
@@ -41,7 +44,7 @@
   </div>
 
   <mat-tab-group class="profile-content" mat-align-tabs="center">
-    <mat-tab label="Posts">
+    <!-- <mat-tab label="Posts">
       <div class="tab-content">
         @for (blog of blogs; track blog) {
           <app-blog-card
@@ -49,7 +52,7 @@
           </app-blog-card>
         }
       </div>
-    </mat-tab>
+    </mat-tab> -->
     <mat-tab label="About">
       <div class="tab-content">
         <mat-card>

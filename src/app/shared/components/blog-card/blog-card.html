@@ -4,7 +4,7 @@
       <img [src]="'https://ui-avatars.com/api/?name=JD'" class="author-avatar" [alt]="blog.author">
       <div class="author-info">
         <h3>{{blog.title}}</h3>
-        <p class="author-meta">{{blog.author}} • {{blog.date | date:'MMM d, yyyy'}}</p>
+        <p class="author-meta">{{blog.author.username}} • {{blog.createdAt| date:'MMM d, yyyy'}}</p>
       </div>
     </div>
 
@@ -20,22 +20,23 @@
         <span>{{blog.comments.length}}</span>
       </button>
     </div>
+<!-- 
+    @if (isCommentOpen) {
+      <mat-divider></mat-divider>
+    } -->
 
     @if (isCommentOpen) {
       <mat-divider></mat-divider>
-    }
-
-    @if (isCommentOpen) {
       <div class="comments-section">
         @for (comment of blog.comments; track comment) {
           <div class="comment">
-                <img [src]="'https://ui-avatars.com/api/?name=' + comment.author" [alt]="comment.author" class="comment-avatar">
+                <img [src]="'https://ui-avatars.com/api/?name=' + comment.user.username" [alt]="comment.user.username" class="comment-avatar">
                 <div class="comment-content">
                     <div class="comment-header">
-                        <span class="comment-author">{{comment.author}}</span>
+                        <span class="comment-author">{{comment.user.username}}</span>
                         <span class="comment-date">{{comment.date | date:'shortDate'}}</span>
                     </div>
-                    <p class="comment-text">{{comment.content}}</p>
+                    <p class="comment-text">{{comment.comment}}</p>
                 </div>
             </div>
 }
