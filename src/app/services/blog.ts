@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 const API_URL = 'http://localhost:3000';
 @Injectable({
@@ -9,8 +10,15 @@ const API_URL = 'http://localhost:3000';
 export class Blog {
   constructor(private http: HttpClient) {}
 
-  getBlogs(): Observable<any> {
-    return this.http.get(`${API_URL}/blogs`);
+  getBlogs(): Observable<any[]> {
+    return this.http.get(`${API_URL}/blogs`).pipe(
+      // normalize response shape: either an array or { blogs: [...] }
+      map((res: any) => {
+        if (Array.isArray(res)) return res;
+        if (res && Array.isArray(res.blogs)) return res.blogs;
+        return [] as any[];
+      })
+    );
   }
 
   getPost(id: string): Observable<any> {

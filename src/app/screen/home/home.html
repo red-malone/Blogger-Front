@@ -17,10 +17,16 @@
       </mat-card> -->
 
       <div class="blog-list">
-           @for (blog of blogs; track blog) {
-        <app-blog-card [blog]="blog"> </app-blog-card>
-        }
-        <app-no-blog page="home" *ngIf="blogs.length === 0"></app-no-blog>
+        <app-no-blog *ngIf="(blogs$ | async)?.length === 0" page="home"></app-no-blog>
+
+        <ng-container *ngIf="blogs$ | async as blogs">
+          <ng-container *ngIf="blogs.length > 0">
+            <app-blog-card
+              *ngFor="let blog of blogs"
+              [blog]="blog">
+            </app-blog-card>
+          </ng-container>
+        </ng-container>
       </div>
     </main>
   </div>

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { Blog } from '../../services/blog';
+import { Observable } from 'rxjs';
 
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar';
 import { UserProfileComponent } from '../../shared/components/user-profile/user-profile';
@@ -30,29 +31,15 @@ import { NoBlog } from "../../shared/components/no-blog/no-blog";
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
-export class Home {
+export class Home implements OnInit {
+  // expose an observable so the template can use the async pipe
+  blogs$: Observable<any[]> = new Observable();
 
-  // changed from Observable<any[]> to a plain array so the template can iterate over it
-  blogs: any[] = [];
+  constructor(private auth: AuthService, private blogService: Blog) {}
 
-  constructor(private auth: AuthService, private blogService: Blog) {
-    // initialize blogs after services are available by subscribing to the Observable
-    this.blogService.getBlogs().subscribe((res: any) => {
-      // API returns { status: 'Success', blogs: [...] }
-      if (Array.isArray(res)) {
-        // service returned the array directly
-        this.blogs = res;
-      } else if (res && Array.isArray(res.blogs)) {
-        // service returned the wrapper object
-        this.blogs = res.blogs;
-      } else {
-        // fallback to empty array
-        this.blogs = [];
-      }
-    }, (err) => {
-      console.error('Failed to load blogs', err);
-      this.blogs = [];
-    });
+  ngOnInit() {
+    // assign the normalized Observable from the service
+    this.blogs$ = this.blogService.getBlogs();
   }
 
   get isGuest(): boolean {

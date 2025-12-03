@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    const excludedurls = ['/users/login', '/users/register','/blogs'];
+    const excludedurls = ['/users/login', '/users/register'];
     if (excludedurls.some(url => req.url.includes(url))) {
       return next.handle(req);
     }
