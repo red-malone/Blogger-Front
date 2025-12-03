@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { environment } from '../../environments/environment';
 
-const API_URL = environment?.apiUrl?.replace(/\/\/$/, '') || 'http://localhost:3000';
+const API_URL = 'http://localhost:3000';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(private http: HttpClient) {}
 
-  signup(payload: { name?: string; email: string; password: string }): Observable<any> {
+  signup(payload: { username: string; email: string; password: string }): Observable<any> {
     return this.http.post(`${API_URL}/users/register`, payload).pipe(
       tap((res: any) => {
         if (res?.token) sessionStorage.setItem('token', res.token);

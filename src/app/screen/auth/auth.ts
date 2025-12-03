@@ -52,7 +52,7 @@ export class AuthComponent implements OnInit {
     this.loading = true;
     this.error = null;
 
-    const { name, email, password } = this.form.value as { name?: string; email: string; password: string };
+    const { username, email, password } = this.form.value as { username: string; email: string; password: string };
 
     if (this.mode === 'login') {
       this.auth.login({ email, password }).subscribe({
@@ -66,7 +66,7 @@ export class AuthComponent implements OnInit {
         }
       });
     } else {
-      this.auth.signup({ name, email, password }).subscribe({
+      this.auth.signup({ username, email, password }).subscribe({
         next: () => {
           this.loading = false;
           this.router.navigateByUrl(this.returnUrl || '/home');

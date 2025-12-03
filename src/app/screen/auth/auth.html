@@ -18,9 +18,9 @@
 
       <form [formGroup]="form" (ngSubmit)="submit()">
         <mat-form-field *ngIf="mode === 'signup'" appearance="outline" class="full">
-          <mat-label>Name</mat-label>
-          <input matInput formControlName="name" placeholder="Your full name" />
-          <mat-error *ngIf="form.get('name')?.touched && form.get('name')?.invalid">Name is required</mat-error>
+          <mat-label>Username</mat-label>
+          <input matInput formControlName="username" placeholder="Your username" />
+          <mat-error *ngIf="form.get('username')?.touched && form.get('username')?.invalid">Username is required</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full">

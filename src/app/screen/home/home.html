@@ -17,11 +17,10 @@
       </mat-card> -->
 
       <div class="blog-list">
-        @for (blog of blogs; track blog) {
-          <app-blog-card
-            [blog]="blog">
-          </app-blog-card>
+           @for (blog of blogs; track blog) {
+        <app-blog-card [blog]="blog"> </app-blog-card>
         }
+        <app-no-blog page="home" *ngIf="blogs.length === 0"></app-no-blog>
       </div>
     </main>
   </div>

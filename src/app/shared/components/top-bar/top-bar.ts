@@ -19,4 +19,7 @@ export class TopBarComponent {
   get isGuest(): boolean {
     return !this.auth.isLoggedIn();
   }
+  logout(): void {
+    this.auth.logout();
+  }
 }

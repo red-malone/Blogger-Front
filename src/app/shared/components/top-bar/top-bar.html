@@ -13,6 +13,9 @@
       @if (isGuest) {
         <button mat-button class="register-btn" routerLink="/signup">Register</button>
       }
+      @if (!isGuest) {
+        <button mat-button class="auth-btn" (click)="logout()">Logout</button>
+      }
     </div>
   </div>
 </mat-toolbar>
