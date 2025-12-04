@@ -14,4 +14,8 @@ export class User {
   getProfile() {
     return this.http.get(`${API_URL}/users/profile`);
   }
+
+  editProfile(payload: any) {
+    return this.http.put(`${API_URL}/users/profile`, payload);
+  }
 }

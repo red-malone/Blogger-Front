@@ -56,7 +56,6 @@ export class ProfileComponent implements OnInit {
     // Fetch user profile data here
     this.userService.getProfile().subscribe((profile: any) => {
       // Update user object with fetched data
-      console.log(profile.user);
       this.user = profile.user as UserDetails;
     });
 

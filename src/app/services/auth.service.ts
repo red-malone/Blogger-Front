@@ -36,12 +36,31 @@ export class AuthService {
   decodeToken():any{
     const token = this.getToken();
     if (!token) return null;
-    const payload = token.split('.')[1];
-    const decodedPayload = atob(payload);
-    return JSON.parse(decodedPayload);
+    try {
+      const payload = token.split('.')[1];
+      // handle base64url padding
+      const base64 = payload.replace(/-/g, '+').replace(/_/g, '/');
+      const padded = base64.padEnd(base64.length + (4 - (base64.length % 4)) % 4, '=');
+      const decodedPayload = atob(padded);
+      return JSON.parse(decodedPayload);
+    } catch (e) {
+      return null;
+    }
   }
   getUserId(): string | null {
     const decoded = this.decodeToken();
     return decoded ? decoded.id : null;
+  }
+
+  isTokenExpired(): boolean {
+    const decoded = this.decodeToken();
+    if (!decoded) return true;
+    // JWT `exp` is seconds since epoch
+    if (decoded.exp && typeof decoded.exp === 'number') {
+      const now = Math.floor(Date.now() / 1000);
+      return decoded.exp < now;
+    }
+    // if no exp claim, treat as expired for safety
+    return true;
   }
 }
