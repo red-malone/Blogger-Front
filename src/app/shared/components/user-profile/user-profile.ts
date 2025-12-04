@@ -6,6 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { CommonModule } from '@angular/common'; // Added CommonModule just in case
 import { AuthService } from '../../../services/auth.service';
+import { UserDetails } from '../../../models/user.model';
+import { User } from '../../../services/user';
 
 @Component({
   selector: 'app-user-profile',
@@ -23,15 +25,24 @@ import { AuthService } from '../../../services/auth.service';
 export class UserProfileComponent implements OnInit {
   
   // Default structure to prevent template errors before data loads
-  user = {
-    name: '',
+  user: UserDetails = {
+    _id: '',
+    username: '',
     bio: '',
-    followers: 0,
-    following: 0,
-    posts: 0
-  };
+    role: '',
+    isActive: false,
+    createdAt: '',
+    updatedAt: '',
+    socialLinks: {
+      twitter: '',
+      linkedin: '',
+      github: '',
+      website: ''
+    }
+  }
 
-  constructor(private router: Router, private auth: AuthService) {}
+
+  constructor(private router: Router, private auth: AuthService,private userService: User) {}
 
   get isGuest(): boolean {
     return !this.auth.isLoggedIn();
@@ -40,12 +51,21 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     if (this.isGuest) {
       // Set default Guest data
-      this.user = {
-        name: 'Guest User',
-        bio: 'Please log in to view your stats and profile details.',
-        followers: 0,
-        following: 0,
-        posts: 0
+      this.user = 
+      {
+        _id: '',
+        username: 'Guest User',
+        bio: 'Please log in to view profile details.',
+        role: 'guest',
+        isActive: false,
+        createdAt: '',
+        updatedAt: '',
+        socialLinks: {
+          twitter: '', 
+          linkedin: '',
+          github: '',
+          website: ''
+        }
       };
     } else {
       // If logged in, fetch the actual data
@@ -64,13 +84,12 @@ export class UserProfileComponent implements OnInit {
     // });
 
     // Mock data for now:
-    this.user = {
-      name: 'John Doe',
-      bio: 'Passionate writer and storyteller',
-      followers: 120,
-      following: 85,
-      posts: 24
-    };
+    this.userService.getProfile().subscribe((profile: any) => {
+      // Update user object with fetched data
+      console.log(profile.user);
+      this.user = profile.user as UserDetails;
+    });
+
   }
 
   goToProfile() {
