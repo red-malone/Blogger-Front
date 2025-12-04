@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { AuthService } from './auth.service';
+
 const API_URL = 'http://localhost:3000';
 
 @Injectable({
@@ -9,10 +9,9 @@ const API_URL = 'http://localhost:3000';
 })
 
 export class User {
-  constructor(private http: HttpClient, private authService: AuthService) {}
+  constructor(private http: HttpClient) {}
 
   getProfile() {
-    
     return this.http.get(`${API_URL}/users/profile`);
   }
 }

@@ -10,11 +10,7 @@ export class AuthService {
   constructor(private http: HttpClient) {}
 
   signup(payload: { username: string; email: string; password: string }): Observable<any> {
-    return this.http.post(`${API_URL}/users/register`, payload).pipe(
-      tap((res: any) => {
-        if (res?.token) sessionStorage.setItem('token', res.token);
-      })
-    );
+    return this.http.post(`${API_URL}/users/register`, payload)
   }
 
   login(payload: { email: string; password: string }): Observable<any> {

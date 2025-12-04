@@ -6,8 +6,8 @@
 
         .cover-image {
             height: 300px;
-            background-size: cover;
-            background-position: center;
+            /* CHANGED: Static gradient background instead of image URL */
+            background: linear-gradient(135deg, #d3cce3 0%, #e9e4f0 100%); 
             position: relative;
         }
 
@@ -21,7 +21,16 @@
                 height: 120px;
                 border-radius: 50%;
                 border: 4px solid white;
-                background: white;
+                /* CHANGED: Styling for text/letter avatar */
+                background: #fdfbf7; /* Light warm background */
+                color: #4a3527;      /* Matches your existing h1 color */
+                display: flex;       /* Centers the letter */
+                align-items: center;
+                justify-content: center;
+                font-size: 3.5rem;   /* Large letter size */
+                font-weight: 700;
+                text-transform: uppercase;
+                user-select: none;   /* Prevents highlighting the letter */
             }
         }
 

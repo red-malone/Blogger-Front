@@ -23,6 +23,7 @@ export class Blog {
   }
   getBlog(): Observable<any> {
     const id = this.authService.getUserId();
+    console.log('Fetching blog for user ID:', id);
     return this.http.get(`${API_URL}/blogs/${id}`).pipe(
       map((res: any) =>{
         if (Array.isArray(res)) return res;

@@ -10,24 +10,10 @@ import { BlogCardComponent } from '../../shared/components/blog-card/blog-card';
 import { User } from '../../services/user';
 import { Blog } from '../../services/blog';
 import { UserDetails } from '../../models/user.model';
+import { NoBlog } from "../../shared/components/no-blog/no-blog";
+import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
-//sample user object
-// {
-//     "socialLinks": {
-//         "twitter": "",
-//         "linkedin": "",
-//         "github": "",
-//         "website": ""
-//     },
-//     "_id": "69257243ec332296a6fad4c0",
-//     "username": "red-malone",
-//     "bio": "",
-//     "role": "user",
-//     "isActive": true,
-//     "createdAt": "2025-11-25T09:09:23.442Z",
-//     "updatedAt": "2025-11-25T09:09:23.442Z",
-//     "__v": 0
-// }
 
 @Component({
   selector: 'app-profile',
@@ -39,7 +25,9 @@ import { UserDetails } from '../../models/user.model';
     MatTabsModule,
     MatFormFieldModule,
     MatInputModule,
-    BlogCardComponent
+    BlogCardComponent,
+    NoBlog,
+    CommonModule
 ],
   templateUrl: './profile.html',
   styleUrl: './profile.scss'
@@ -60,29 +48,22 @@ export class ProfileComponent implements OnInit {
     createdAt: '',
     updatedAt: ''
   };
-  blogs: any[] = [];
+  blogs$: Observable<any[]> = new Observable();
   constructor(private userService: User, private blogService: Blog) {}
-  // user = {
-  //   name: 'John Doe',
-  //   bio: 'Passionate writer and storyteller',
-  //   followers: 120,
-  //   following: 85,
-  //   posts: 24,
-  //   coverImage: 'https://source.unsplash.com/random/1200x300/?nature',
-  //   profileImage: 'https://ui-avatars.com/api/?name=John+Doe&size=200'
-  // };
+
 
   ngOnInit(): void {
     // Fetch user profile data here
-    this.userService.getProfile().subscribe(profile => {
+    this.userService.getProfile().subscribe((profile: any) => {
       // Update user object with fetched data
-      console.log(profile)
-      this.user = { ...this.user, ...profile };
+      console.log(profile.user);
+      this.user = profile.user as UserDetails;
     });
 
-    //Fetch Blogs by user
-    // this.blogService.getBlog().subscribe(blogs => {
-    //   this.blogs = blogs;
-    // });
+    // Fetch Blogs by user
+    this.blogService.getBlog().subscribe(blogs => {
+      this.blogs$ = blogs;
+      console.log("Stored blogs",this.blogs$)
+    });
   }
 }

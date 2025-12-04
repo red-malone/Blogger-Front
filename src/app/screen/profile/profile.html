@@ -1,10 +1,14 @@
 <div class="profile-container">
   <div class="profile-header">
-    <!-- <div class="cover-image" [style.backgroundImage]="'url(' + user.coverImage + ')'">
-      <div class="profile-image-container">
-        <img [src]="user.profileImage" [alt]="user.name" class="profile-image">
-      </div>
-    </div> -->
+    <div class="cover-image">
+  <div class="profile-image-container">
+    <img 
+      [src]="'https://ui-avatars.com/api/?name=' + user.username + '&background=random'" 
+      [alt]="user.username" 
+      class="profile-image"
+    >
+  </div>
+</div>
 
     <div class="profile-info">
       <div class="profile-details">
@@ -14,12 +18,12 @@
 
       <div class="profile-stats">
         <div class="stat">
-          <span class="stat-value">"0"</span>
+          <span class="stat-value">0</span>
           <!-- Put actual user.posts -->
           <span class="stat-label">Posts</span>
         </div>
         <div class="stat">
-          <span class="stat-value">'0'</span>
+          <span class="stat-value">0</span>
           <!-- Put actual user.followers -->
           <span class="stat-label">Followers</span>
         </div>
@@ -44,15 +48,20 @@
   </div>
 
   <mat-tab-group class="profile-content" mat-align-tabs="center">
-    <!-- <mat-tab label="Posts">
+    <mat-tab label="Posts">
       <div class="tab-content">
-        @for (blog of blogs; track blog) {
-          <app-blog-card
-            [blog]="blog">
-          </app-blog-card>
-        }
+        <app-no-blog *ngIf="(blogs$ | async)?.length === 0" page="profile"></app-no-blog>
+
+        <ng-container *ngIf="blogs$ | async as blogs">
+          <ng-container *ngIf="blogs.length > 0">
+            <app-blog-card
+              *ngFor="let blog of blogs"
+              [blog]="blog">
+            </app-blog-card>
+          </ng-container>
+        </ng-container>
       </div>
-    </mat-tab> -->
+    </mat-tab>
     <mat-tab label="About">
       <div class="tab-content">
         <mat-card>

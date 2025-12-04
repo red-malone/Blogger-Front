@@ -19,19 +19,19 @@
       <form [formGroup]="form" (ngSubmit)="submit()">
         <mat-form-field *ngIf="mode === 'signup'" appearance="outline" class="full">
           <mat-label>Username</mat-label>
-          <input matInput formControlName="username" placeholder="Your username" />
+          <input matInput formControlName="username" placeholder="Your username" autocomplete="username" />
           <mat-error *ngIf="form.get('username')?.touched && form.get('username')?.invalid">Username is required</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full">
           <mat-label>Email</mat-label>
-          <input matInput formControlName="email" placeholder="you@example.com" />
+          <input matInput formControlName="email" placeholder="you@example.com" autocomplete="email" />
           <mat-error *ngIf="form.get('email')?.touched && form.get('email')?.invalid">Valid email required</mat-error>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="full">
           <mat-label>Password</mat-label>
-          <input matInput type="password" formControlName="password" placeholder="At least 6 characters" />
+          <input matInput type="password" formControlName="password" placeholder="At least 6 characters" autocomplete="new-password" />
           <mat-error *ngIf="form.get('password')?.touched && form.get('password')?.invalid">Password must be at least 6 characters</mat-error>
         </mat-form-field>
 

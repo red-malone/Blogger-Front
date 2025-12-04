@@ -29,8 +29,9 @@ export class AuthComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
+    // create username control (validators applied dynamically for signup)
     this.form = this.fb.group({
-      name: [''],
+      username: [''],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]]
     });
@@ -41,6 +42,20 @@ export class AuthComponent implements OnInit {
     if (path.includes('signup')) this.mode = 'signup';
     else this.mode = 'login';
     this.returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
+
+    // ensure username validators reflect the current mode
+    this.updateUsernameValidators();
+  }
+
+  private updateUsernameValidators() {
+    const ctrl = this.form.get('username');
+    if (!ctrl) return;
+    if (this.mode === 'signup') {
+      ctrl.setValidators([Validators.required]);
+    } else {
+      ctrl.clearValidators();
+    }
+    ctrl.updateValueAndValidity();
   }
 
   submit(): void {
@@ -83,5 +98,6 @@ export class AuthComponent implements OnInit {
     this.mode = this.mode === 'login' ? 'signup' : 'login';
     this.error = null;
     this.form.reset();
+    this.updateUsernameValidators();
   }
 }
