@@ -60,10 +60,9 @@ export class ProfileComponent implements OnInit {
       this.user = profile.user as UserDetails;
     });
 
-    // Fetch Blogs by user
-    this.blogService.getBlog().subscribe(blogs => {
-      this.blogs$ = blogs;
-      console.log("Stored blogs",this.blogs$)
-    });
+    // Provide the blogs Observable directly to the template so the async pipe
+    // receives a proper Observable (avoid subscribing and assigning the raw
+    // array which breaks the async pipe).
+    this.blogs$ = this.blogService.getBlog();
   }
 }
