@@ -35,7 +35,7 @@
       </div>
 
       <div class="profile-actions">
-        <button mat-raised-button color="primary">
+        <button mat-raised-button color="primary" (click)="editing = true">
           <mat-icon>edit</mat-icon>
           Edit Profile
         </button>
@@ -46,6 +46,11 @@
         <!-- //TODO: Add settings functionality in future update-->
       </div>
     </div>
+  </div>
+  
+  <!-- Inline editor shown when editing -->
+  <div *ngIf="editing">
+    <app-edit-profile [user]="user" (saved)="onProfileSaved($event)" (cancel)="editing = false"></app-edit-profile>
   </div>
 
   <mat-tab-group class="profile-content" mat-align-tabs="center">
@@ -70,25 +75,29 @@
             <h2>About Me</h2>
             <p>{{user.bio}}</p>
 
-            <h3>Contact Information</h3>
+            <!-- <h3>Contact Information</h3>
             <mat-form-field appearance="outline" class="full-width">
               <mat-label>Email</mat-label>
               <input matInput value="john.doe@example.com" disabled>
-            </mat-form-field>
+            </mat-form-field> -->
 
             <h3>Social Links</h3>
             <div class="social-links">
-              <button mat-button>
+              <button mat-button (click)="openLink(user.socialLinks.website, 'Website')">
                 <mat-icon>link</mat-icon>
                 Website
               </button>
-              <button mat-button>
+              <button mat-button (click)="openLink(user.socialLinks.twitter, 'Twitter')">
                 <mat-icon>public</mat-icon>
                 Twitter
               </button>
-              <button mat-button>
+              <button mat-button (click)="openLink(user.socialLinks.github, 'GitHub')">
                 <mat-icon>code</mat-icon>
                 GitHub
+              </button>
+              <button mat-button (click)="openLink(user.socialLinks.linkedin, 'LinkedIn')">
+                <mat-icon>business</mat-icon>
+                LinkedIn
               </button>
             </div>
           </mat-card-content>
