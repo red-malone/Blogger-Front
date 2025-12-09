@@ -9,12 +9,7 @@
     </aside>
 
     <main class="main-content">
-      <!-- <mat-card class="guest-banner" *ngIf="isGuest">
-        Viewing as guest — <a routerLink="/login">Login</a> or <a routerLink="/signup">Sign up</a> to create posts.
-      </mat-card>
-      <mat-card>
-        <app-create-post *ngIf="!isGuest"></app-create-post>
-      </mat-card> -->
+
 
       <div class="blog-list">
         <app-no-blog *ngIf="(blogs$ | async)?.length === 0" page="home"></app-no-blog>
