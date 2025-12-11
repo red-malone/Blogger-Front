@@ -1,29 +1,50 @@
-<mat-card class="create-post-card">
-    <div class="create-post-container">
-        <div class="header">
-            <div class="avatar">
-                <img src="https://ui-avatars.com/api/?name=CU" alt="CU">
-            </div>
-            <h2>Create Post</h2>
-        </div>
-
-        <mat-form-field appearance="outline" class="post-input">
-            <mat-label>What's on your mind?</mat-label>
-            <textarea matInput
-                [(ngModel)]="postContent"
-                rows="3"
-                placeholder="What's on your mind?">
-            </textarea>
-        </mat-form-field>
-
-        <div class="actions">
-            <button mat-flat-button 
-                color="primary"
-                class="create-button" 
-                (click)="createPost()" 
-                [disabled]="!postContent.trim()">
-                Create Post
-            </button>
-        </div>
+<mat-card class="facebook-post-card">
+  <div class="collapsed-trigger" *ngIf="!isExpanded && !editMode" (click)="isExpanded = true">
+    <div class="avatar">
+      <img src="https://ui-avatars.com/api/?name=CU" alt="CU" />
     </div>
+    <div class="fake-input">
+      <span>What's on your mind, User?</span>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="createOrUpdate()" *ngIf="isExpanded || editMode">
+    <div class="expanded-container">
+      
+      <div class="header">
+        <div class="avatar">
+          <img src="https://ui-avatars.com/api/?name=CU" alt="CU" />
+        </div>
+        <div class="user-info">
+          <span class="name">CurrentUser</span>
+          <span class="privacy-badge">Public</span>
+        </div>
+        <button mat-icon-button type="button" class="close-btn" (click)="onCancel()">
+          <mat-icon>close</mat-icon>
+        </button>
+      </div>
+
+      <div class="scroll-content">
+        <input class="bare-input title-input" formControlName="title" placeholder="Post Title (Optional)" />
+
+        <textarea class="bare-input content-input" formControlName="content" placeholder="What's on your mind?"></textarea>
+        
+        <div class="meta-inputs">
+            <input class="bare-input meta" formControlName="category" placeholder="Category" />
+            <input class="bare-input meta" formControlName="tags" placeholder="Tags (comma separated)" />
+        </div>
+      </div>
+
+      <div class="actions">
+        <div class="add-ons">
+           <span class="icon">🖼️</span>
+           <span class="icon">🏷️</span>
+        </div>
+        <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">
+          Post
+        </button>
+      </div>
+
+    </div>
+  </form>
 </mat-card>

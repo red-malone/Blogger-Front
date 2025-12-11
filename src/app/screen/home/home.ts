@@ -21,7 +21,7 @@ import { NoBlog } from "../../shared/components/no-blog/no-blog";
     CommonModule,
     TopBarComponent,
     UserProfileComponent,
-    // CreatePostComponent,
+    CreatePostComponent,
     BlogCardComponent,
     MatCardModule,
     MatButtonModule,
@@ -39,6 +39,11 @@ export class Home implements OnInit {
 
   ngOnInit() {
     // assign the normalized Observable from the service
+    this.blogs$ = this.blogService.getBlogs();
+  }
+
+  onPostSaved(_post: any) {
+    // refresh the list when a post is created/updated
     this.blogs$ = this.blogService.getBlogs();
   }
 
